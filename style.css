@@ -132,4 +132,8 @@ ul {
         font-size: 3rem;
         outline: 3px solid;
     }
+
+    .navigation label:hover{
+      background: inherit;
+    }
 }
