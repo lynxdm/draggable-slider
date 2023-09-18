@@ -14,8 +14,8 @@ function animate() {
 let interval = setInterval(animate, 5000);
 
 function dragStart(e) {
-  e.preventDefault()
   if (navigation.contains(e.target)) return;
+  e.preventDefault()
   clearInterval(interval);
   startx = e.pageX;
   clicked = true;
