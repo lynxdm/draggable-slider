@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
 *,
 *::before,
 *::after {
@@ -14,7 +16,7 @@ body {
   height: 100vh;
   place-items: center;
   background: rgb(150, 191, 227);
-  font-family: cursive;
+  font-family: "Poppins", sans-serif;
 }
 
 ul {
