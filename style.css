@@ -124,3 +124,12 @@ ul {
 #radio4:checked ~ .navigation .btn4 {
   background: var(--primaryColor);
 }
+
+@media(max-width: 450px){
+    .slide h2{
+        height: 3rem;
+        width: 3rem;
+        font-size: 2rem;
+        outline: 3px solid;
+    }
+}
