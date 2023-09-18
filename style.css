@@ -127,9 +127,9 @@ ul {
 
 @media(max-width: 450px){
     .slide h2{
-        height: 3rem;
-        width: 3rem;
-        font-size: 2rem;
+        height: 5rem;
+        width: 5rem;
+        font-size: 3rem;
         outline: 3px solid;
     }
 }
