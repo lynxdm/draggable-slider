@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>slideshow</title>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="slider">
+      <!-- radio buttons start -->
+      <input type="radio" name="radio-btn" id="radio1" checked />
+      <input type="radio" name="radio-btn" id="radio2" />
+      <input type="radio" name="radio-btn" id="radio3" />
+      <input type="radio" name="radio-btn" id="radio4" />
+      <!-- radio buttons end -->
+      <!-- slides start -->
+      <ul class="slides">
+        <li class="slide first" style="background: url(./images/1.jpg)">
+          <h2>1</h2>
+        </li>
+        <li class="slide" style="background: url(./images/2.jpg)">
+          <h2>2</h2>
+        </li>
+        <li class="slide" style="background: url(./images/3.jpg)">
+          <h2>3</h2>
+        </li>
+        <li class="slide" style="background: url(./images/4.jpg)">
+          <h2>4</h2>
+        </li>
+      </ul>
+      <!-- slides end -->
+      <!-- navigation start -->
+      <div class="navigation">
+        <label for="radio1" class="btn1"></label>
+        <label for="radio2" class="btn2"></label>
+        <label for="radio3" class="btn3"></label>
+        <label for="radio4" class="btn4"></label>
+      </div>
+      <!-- navigation end -->
+    </div>
+  </body>
+</html>

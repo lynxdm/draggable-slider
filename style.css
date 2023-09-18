@@ -1,0 +1,124 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --primaryColor: rgba(222, 183, 110, 0.821);
+}
+
+body {
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  background: rgb(150, 191, 227);
+  font-family: cursive;
+}
+
+ul {
+  list-style: none;
+}
+
+.slider {
+  position: relative;
+  width: 80%;
+  max-width: 800px;
+  max-height: 500px;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* SLIDES */
+.slides {
+  width: 500%;
+  height: 100%;
+  display: flex;
+}
+
+.slider input {
+  display: none;
+}
+
+.slide {
+  background-color: rgb(175, 166, 166) !important;
+  background-blend-mode: multiply;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  width: 20%;
+  transition: 2s;
+  display: grid;
+  place-items: center;
+}
+
+.slide h2 {
+  font-size: 5rem;
+  user-select: none;
+  color: var(--primaryColor);
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  outline: 7px solid;
+  backdrop-filter: blur(2px);
+}
+
+/* NAVIGATION */
+.navigation {
+  position: absolute;
+  width: 100%;
+  margin-top: -40px;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.navigation label {
+  border: 2px solid var(--primaryColor);
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.navigation label:hover {
+  background: var(--primaryColor);
+}
+
+/* ON RADIO CHECKED */
+#radio1:checked ~ .slides .first {
+  margin-left: 0;
+}
+
+#radio2:checked ~ .slides .first {
+  margin-left: -20%;
+}
+
+#radio3:checked ~ .slides .first {
+  margin-left: -40%;
+}
+
+#radio4:checked ~ .slides .first {
+  margin-left: -60%;
+}
+
+#radio1:checked ~ .navigation .btn1 {
+  background: var(--primaryColor);
+}
+
+#radio2:checked ~ .navigation .btn2 {
+  background: var(--primaryColor);
+}
+
+#radio3:checked ~ .navigation .btn3 {
+  background: var(--primaryColor);
+}
+
+#radio4:checked ~ .navigation .btn4 {
+  background: var(--primaryColor);
+}
