@@ -17,9 +17,9 @@ function dragStart(e) {
   if (navigation.contains(e.target)) return;
   e.preventDefault();
   if (e.type == "touchstart") {
-    startx = e.touches[0].pageX;
+    startx = e.touches[0].clientX;
   } else {
-    startx = e.pageX;
+    startx = e.clientX;
   }
   clicked = true;
   clearInterval(interval);
@@ -30,17 +30,16 @@ function dragStart(e) {
 
 function dragging(e) {
   if (!clicked) return;
-  e.preventDefault();
   if (e.type == "touchmove") {
-    if (e.touches[0].pageX < startx && counter < 4) {
+    if (e.touches[0].clientX < startx && counter < 4) {
       counter++;
-    } else if (e.touches[0].pageX > startx && counter > 1) {
+    } else if (e.touches[0].clientX > startx && counter > 1) {
       counter--;
     }
   } else {
-    if (e.pageX < startx && counter < 4) {
+    if (e.clientX < startx && counter < 4) {
       counter++;
-    } else if (e.pageX > startx && counter > 1) {
+    } else if (e.clientX > startx && counter > 1) {
       counter--;
     }
   }
