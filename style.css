@@ -125,15 +125,17 @@ ul {
   background: var(--primaryColor);
 }
 
+@media(max-width: 900px){
+    .navigation label:hover{
+      background: none;
+    }
+}
+
 @media(max-width: 450px){
     .slide h2{
         height: 5rem;
         width: 5rem;
         font-size: 3rem;
         outline: 3px solid;
-    }
-
-    .navigation label:hover{
-      background: inherit;
     }
 }

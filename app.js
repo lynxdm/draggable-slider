@@ -15,20 +15,34 @@ let interval = setInterval(animate, 5000);
 
 function dragStart(e) {
   if (navigation.contains(e.target)) return;
-  e.preventDefault()
-  clearInterval(interval);
-  startx = e.pageX;
+  e.preventDefault();
+  if (e.type == "touchstart") {
+    startx = e.touches[0].pageX;
+  } else {
+    startx = e.pageX;
+  }
   clicked = true;
-  console.log(clicked);
+  clearInterval(interval);
+  //   clearInterval(interval);
+  //   startx = e.pageX;
+  //   clicked = true;
 }
 
 function dragging(e) {
   if (!clicked) return;
   e.preventDefault();
-  if (e.pageX < startx && counter < 4) {
-    counter++;
-  } else if (e.pageX > startx && counter > 1) {
-    counter--;
+  if (e.type == "touchmove") {
+    if (e.touches[0].pageX < startx && counter < 4) {
+      counter++;
+    } else if (e.touches[0].pageX > startx && counter > 1) {
+      counter--;
+    }
+  } else {
+    if (e.pageX < startx && counter < 4) {
+      counter++;
+    } else if (e.pageX > startx && counter > 1) {
+      counter--;
+    }
   }
   document.getElementById("radio" + counter).checked = true;
   clicked = false;
