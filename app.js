@@ -9,7 +9,8 @@ function animate() {
   if (counter > 4) {
     counter = 1;
   }
-  document.getElementById("radio" + counter).checked = true;
+  document.getElementById(`radio${counter}`).checked = true;
+  document;
 }
 let interval = setInterval(animate, 5000);
 
@@ -43,7 +44,7 @@ function dragging(e) {
       counter--;
     }
   }
-  document.getElementById("radio" + counter).checked = true;
+  document.getElementById(`radio${counter}`).checked = true;
   clicked = false;
   interval = setInterval(animate, 5000);
 }

@@ -8,14 +8,15 @@
 }
 
 :root {
-  --primaryColor: rgba(222, 183, 110, 0.821);
+  --primaryColor: #333;
 }
 
 body {
   display: grid;
   height: 100vh;
   place-items: center;
-  background: rgb(150, 191, 227);
+  /* background: rgb(196, 218, 238);0 */
+  background-color: rgb(208, 230, 249);
   font-family: "Poppins", sans-serif;
 }
 
@@ -45,29 +46,40 @@ ul {
 }
 
 .slide {
-  background-color: rgb(175, 166, 166) !important;
-  background-blend-mode: multiply;
-  background-size: cover !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
   width: 20%;
   transition: 2s;
   display: grid;
   place-items: center;
 }
 
+.slide:nth-child(1){
+    background: #fed050;
+}
+
+.slide:nth-child(2){
+    background-color: #7fdbee;
+}
+
+.slide:nth-child(3){
+    background-color: #4cf89c;
+}
+
+.slide:nth-child(4){
+    background-color: #f79191;
+}
+
 .slide h2 {
-  font-size: 5rem;
   user-select: none;
   color: var(--primaryColor);
-  height: 8rem;
-  width: 8rem;
+  height: 5rem;
+  width: 5rem;
+  font-size: 3rem;
   border-radius: 50%;
   display: grid;
   place-items: center;
   text-align: center;
-  outline: 7px solid;
-  backdrop-filter: blur(2px);
+  outline: 3px solid;
+   /* filter: brightness(200%) */
 }
 
 /* NAVIGATION */
@@ -128,14 +140,5 @@ ul {
 @media(max-width: 900px){
     .navigation label:hover{
       background: none;
-    }
-}
-
-@media(max-width: 450px){
-    .slide h2{
-        height: 5rem;
-        width: 5rem;
-        font-size: 3rem;
-        outline: 3px solid;
     }
 }
