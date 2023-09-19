@@ -1,6 +1,6 @@
-let slider = document.querySelector(".slider");
-let navigation = document.querySelector(".navigation");
-let startx;
+const slider = document.querySelector(".slider");
+const navigation = document.querySelector(".navigation");
+let initialX;
 let clicked = false;
 let counter = 1;
 
@@ -9,7 +9,7 @@ function animate() {
   if (counter > 4) {
     counter = 1;
   }
-  document.getElementById(`radio${counter}`).checked = true;
+  document.getElementById("radio" + counter).checked = true;
   document;
 }
 let interval = setInterval(animate, 5000);
@@ -18,33 +18,30 @@ function dragStart(e) {
   if (navigation.contains(e.target)) return;
   e.preventDefault();
   if (e.type == "touchstart") {
-    startx = e.touches[0].clientX;
+    initialX = e.touches[0].clientX;
   } else {
-    startx = e.clientX;
+    initialX = e.clientX;
   }
   clicked = true;
   clearInterval(interval);
-  //   clearInterval(interval);
-  //   startx = e.pageX;
-  //   clicked = true;
 }
 
 function dragging(e) {
   if (!clicked) return;
   if (e.type == "touchmove") {
-    if (e.touches[0].clientX < startx && counter < 4) {
+    if (e.touches[0].clientX < initialX && counter < 4) {
       counter++;
-    } else if (e.touches[0].clientX > startx && counter > 1) {
+    } else if (e.touches[0].clientX > initialX && counter > 1) {
       counter--;
     }
   } else {
-    if (e.clientX < startx && counter < 4) {
+    if (e.clientX < initialX && counter < 4) {
       counter++;
-    } else if (e.clientX > startx && counter > 1) {
+    } else if (e.clientX > initialX && counter > 1) {
       counter--;
     }
   }
-  document.getElementById(`radio${counter}`).checked = true;
+  document.getElementById("radio" + counter).checked = true;
   clicked = false;
   interval = setInterval(animate, 5000);
 }
