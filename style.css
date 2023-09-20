@@ -46,7 +46,7 @@ ul {
 
 .slide {
   width: 20%;
-  transition: 2s;
+  transition: 1s;
   display: grid;
   place-items: center;
 }
