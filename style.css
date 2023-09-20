@@ -98,10 +98,6 @@ ul {
   transition: 1s;
 }
 
-.navigation label:hover {
-  background: var(--primaryColor);
-}
-
 /* ON RADIO CHECKED */
 #radio1:checked ~ .slides .first {
   margin-left: 0;
@@ -133,10 +129,4 @@ ul {
 
 #radio4:checked ~ .navigation .btn4 {
   background: var(--primaryColor);
-}
-
-@media (max-width: 800px) {
-  .navigation label:hover {
-    background: none;
-  }
 }
