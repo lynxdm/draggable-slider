@@ -1,9 +1,13 @@
+// ******SELECT ELEMEMTS******
 const slider = document.querySelector(".slider");
 const navigation = document.querySelector(".navigation");
+
+// ******SET INITIAL VALUES******
 let initialX;
 let clicked = false;
 let counter = 1;
 
+// ******INITIATE INTERVAL******
 function animate() {
   counter++;
   if (counter > 4) {
@@ -14,6 +18,18 @@ function animate() {
 }
 let interval = setInterval(animate, 5000);
 
+// *******EVENT LISTENERS******
+// MOUSE EVENTS
+slider.addEventListener("mousedown", dragStart);
+
+slider.addEventListener("mousemove", dragging);
+
+// TOUCH EVENTS
+slider.addEventListener("touchstart", dragStart);
+
+slider.addEventListener("touchmove", dragging);
+
+// ******CALLBACK FUNCTIONS******
 function dragStart(e) {
   if (navigation.contains(e.target)) return;
   e.preventDefault();
@@ -45,13 +61,3 @@ function dragging(e) {
   clicked = false;
   interval = setInterval(animate, 5000);
 }
-
-// MOUSE EVENTS
-slider.addEventListener("mousedown", dragStart);
-
-slider.addEventListener("mousemove", dragging);
-
-// TOUCH EVENTS
-slider.addEventListener("touchstart", dragStart);
-
-slider.addEventListener("touchmove", dragging);
