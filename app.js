@@ -4,6 +4,7 @@ const navigation = document.querySelector(".navigation");
 
 // ******SET INITIAL VALUES******
 let initialX;
+let finalX;
 let clicked = false;
 let counter = 1;
 
@@ -22,10 +23,12 @@ let interval = setInterval(animate, 5000);
 // MOUSE EVENTS
 slider.addEventListener("mousedown", dragStart);
 slider.addEventListener("mousemove", dragging);
+slider.addEventListener("mouseup", dragStop);
 
 // TOUCH EVENTS
 slider.addEventListener("touchstart", dragStart);
 slider.addEventListener("touchmove", dragging);
+slider.addEventListener("touchend", dragStop);
 
 // ******CALLBACK FUNCTIONS******
 function dragStart(e) {
@@ -59,13 +62,15 @@ function dragging(e) {
   if (!clicked) return; // run only if dragStart ran
 
   // set finalX according to event type
-  let finalX;
   if (e.type == "touchmove") {
     finalX = e.touches[0].clientX;
   } else {
     finalX = e.clientX;
   }
+}
 
+function dragStop(e) {
+  if (navigation.contains(e.target)) return;
   // check in what direction the user goes
   if (finalX < initialX && counter < 4) {
     counter++;
@@ -75,6 +80,8 @@ function dragging(e) {
   document.getElementById("radio" + counter).checked = true;
 
   // resetting values and recalling interval
+  initialX = 0;
+  finalX = 0;
   clicked = false;
   interval = setInterval(animate, 5000);
 }
