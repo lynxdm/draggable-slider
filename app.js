@@ -47,6 +47,8 @@ function dragStart(e) {
   }
   e.preventDefault(); // preventing touchscreen scroll defaults
 
+  slider.style.cursor = "grabbing";
+
   // set initialX according to event type
   if (e.type == "touchstart") {
     initialX = e.touches[0].clientX;
@@ -59,7 +61,7 @@ function dragStart(e) {
 }
 
 function dragging(e) {
-  if (!clicked) return; // run only if dragStart ran
+  if (!clicked) return; // proceed only if dragStart ran
 
   // set finalX according to event type
   if (e.type == "touchmove") {
@@ -71,6 +73,10 @@ function dragging(e) {
 
 function dragStop(e) {
   if (navigation.contains(e.target)) return;
+
+  slider.style.cursor = "grab";
+  if (finalX === 0) return; // proceed only if dragging ran
+
   // check in what direction the user goes
   if (finalX < initialX && counter < 4) {
     counter++;
