@@ -47,11 +47,7 @@ ul {
 
 .slide {
   width: 20%;
-<<<<<<< HEAD
   transition: 1.5s;
-=======
-  transition: 1s;
->>>>>>> d986a377d0da9ba367823a541d3610865e228af4
   display: grid;
   place-items: center;
 }
