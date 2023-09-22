@@ -17,7 +17,7 @@ function animate() {
   document.getElementById("radio" + counter).checked = true;
   document;
 }
-let interval = setInterval(animate, 5000);
+let interval = setInterval(animate, 4000);
 
 // *******EVENT LISTENERS******
 // MOUSE EVENTS
@@ -41,7 +41,7 @@ function dragStart(e) {
     counter = parseInt(e.target.id);
 
     // resume animation
-    interval = setInterval(animate, 5000);
+    interval = setInterval(animate, 4000);
 
     return; // to avoid mistaking manual navigation for drag intent
   }
@@ -89,5 +89,5 @@ function dragStop(e) {
   initialX = 0;
   finalX = 0;
   clicked = false;
-  interval = setInterval(animate, 5000);
+  interval = setInterval(animate, 4000);
 }
