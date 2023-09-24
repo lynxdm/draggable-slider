@@ -34,19 +34,19 @@ ul {
   cursor: grab;
 }
 
-/* SLIDES */
-.slides {
-  width: 500%;
-  height: 100%;
-  display: flex;
-}
-
 .slider input {
   display: none;
 }
 
+/* SLIDES */
+.slides {
+  width: 400%;
+  height: 100%;
+  display: flex;
+}
+
 .slide {
-  width: 20%;
+  width: 25%;
   transition: 1.5s;
   display: grid;
   place-items: center;
@@ -105,15 +105,15 @@ ul {
 }
 
 #radio2:checked ~ .slides .first {
-  margin-left: -20%;
+  margin-left: -25%;
 }
 
 #radio3:checked ~ .slides .first {
-  margin-left: -40%;
+  margin-left: -50%;
 }
 
 #radio4:checked ~ .slides .first {
-  margin-left: -60%;
+  margin-left: -75%;
 }
 
 #radio1:checked ~ .navigation .btn1 {
