@@ -29,7 +29,7 @@ ul {
   aspect-ratio: 1;
   max-width: 50rem;
   max-height: 31.25rem;
-  border-radius: 1rem;
+  border-radius: 0.7rem;
   overflow: hidden;
   cursor: grab;
 }
