@@ -47,6 +47,7 @@ function dragStart(e) {
   }
   e.preventDefault(); // preventing touchscreen scroll defaults
 
+  document.body.style.cursor = "grabbing";
   slider.style.cursor = "grabbing";
 
   // set initialX according to event type
@@ -58,6 +59,8 @@ function dragStart(e) {
 
   clicked = true; // to know that the user wants to drag
   clearInterval(interval); // stop interval
+  document.onmousemove = dragging;
+  document.onmouseup = dragStop;
 }
 
 function dragging(e) {
@@ -74,6 +77,7 @@ function dragging(e) {
 function dragStop(e) {
   if (navigation.contains(e.target)) return;
 
+  document.body.style.cursor = "default";
   slider.style.cursor = "grab";
   if (finalX === 0) return; // proceed only if dragging ran
 

@@ -26,10 +26,10 @@ ul {
 .slider {
   position: relative;
   width: 80%;
-  max-width: 800px;
-  max-height: 500px;
   aspect-ratio: 1;
-  border-radius: 10px;
+  max-width: 50rem;
+  max-height: 31.25rem;
+  border-radius: 1rem;
   overflow: hidden;
   cursor: grab;
 }
@@ -85,7 +85,7 @@ ul {
 .navigation {
   position: absolute;
   width: 100%;
-  margin-top: -40px;
+  bottom: 2.5rem;
   display: flex;
   gap: 2rem;
   justify-content: center;
@@ -93,7 +93,7 @@ ul {
 
 .navigation label {
   border: 2px solid var(--primaryColor);
-  padding: 5px;
+  padding: 0.3rem;
   border-radius: 50%;
   cursor: pointer;
   transition: 1s;
