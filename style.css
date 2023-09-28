@@ -40,14 +40,16 @@ ul {
 
 /* SLIDES */
 .slides {
+  position: absolute;
+  left: 0;
   width: 400%;
   height: 100%;
   display: flex;
+  transition: 0.2s;
 }
 
 .slide {
   width: 25%;
-  transition: 1.5s;
   display: grid;
   place-items: center;
 }
@@ -100,21 +102,21 @@ ul {
 }
 
 /* ON RADIO CHECKED */
-#radio1:checked ~ .slides .first {
-  margin-left: 0;
+/* #radio1:checked ~ .slides {
+  left: 0%;
 }
 
-#radio2:checked ~ .slides .first {
-  margin-left: -25%;
+#radio2:checked ~ .slides {
+  left: -100%;
 }
 
-#radio3:checked ~ .slides .first {
-  margin-left: -50%;
+#radio3:checked ~ .slides {
+  left: -200%;
 }
 
-#radio4:checked ~ .slides .first {
-  margin-left: -75%;
-}
+#radio4:checked ~ .slides {
+  left: -300%;
+} */
 
 #radio1:checked ~ .navigation .btn1 {
   background: var(--primaryColor);

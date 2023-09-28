@@ -1,25 +1,25 @@
 // ******SELECT ELEMEMTS******
 const slider = document.querySelector(".slider");
+const slides = document.querySelector(".slides");
 const navigation = document.querySelector(".navigation");
 
 // ******SET INITIAL VALUES******
 let initialX;
 let finalX;
+let newPos = -100;
 let clicked = false;
-let counter = 1;
-
-// ******INITIATE INTERVAL******
-function animate() {
-  counter++;
-  if (counter > 4) {
-    counter = 1;
-  }
-  document.getElementById("radio" + counter).checked = true;
-  document;
-}
-let interval = setInterval(animate, 4000);
+let counter = 0;
+let slideDistance;
+let interval;
+let slidesWidth = slides.offsetWidth;
+let threshold = 60;
 
 // *******EVENT LISTENERS******
+// INITIATE INTERVAL
+document.addEventListener("DOMContentLoaded", () => {
+  interval = setInterval(animate, 4000);
+});
+
 // MOUSE EVENTS
 slider.addEventListener("mousedown", dragStart);
 slider.addEventListener("mousemove", dragging);
@@ -30,25 +30,47 @@ slider.addEventListener("touchstart", dragStart);
 slider.addEventListener("touchmove", dragging);
 slider.addEventListener("touchend", dragStop);
 
+// ******FUNCTIONS******
+function moveSlide() {
+  slides.style.left = `${newPos * counter}%`;
+  document.getElementById("radio" + (counter + 1)).checked = true;
+}
+
 // ******CALLBACK FUNCTIONS******
+function animate() {
+  if (clicked) return; //stop if dragging
+  counter++;
+  if (counter > 3) {
+    counter = 0;
+    slides.style.transition = "none";
+  } else {
+    slides.style.transition = "0.8s";
+  }
+  moveSlide();
+}
+
 function dragStart(e) {
   // handling manual navigation
   if (navigation.contains(e.target)) {
-    // pause animation to avoid clashes
+    // pause interval to avoid clashes
     clearInterval(interval);
 
     // update counter with manual btn id
-    counter = parseInt(e.target.id);
+    counter = parseInt(e.target.id) - 1;
 
-    // resume animation
+    slides.style.transition = "0.8s";
+    moveSlide();
+    // resume interval
     interval = setInterval(animate, 4000);
 
     return; // to avoid mistaking manual navigation for drag intent
   }
   e.preventDefault(); // preventing touchscreen scroll defaults
 
-  document.body.style.cursor = "grabbing";
+  // sliding animation
+  slides.style.transition = "0.5s";
   slider.style.cursor = "grabbing";
+  document.body.style.cursor = "grabbing";
 
   // set initialX according to event type
   if (e.type == "touchstart") {
@@ -59,6 +81,8 @@ function dragStart(e) {
 
   clicked = true; // to know that the user wants to drag
   clearInterval(interval); // stop interval
+
+  // continue dragging even when outside the slider
   document.onmousemove = dragging;
   document.onmouseup = dragStop;
 }
@@ -72,26 +96,45 @@ function dragging(e) {
   } else {
     finalX = e.clientX;
   }
+
+  let currentPosition = counter * newPos;
+
+  slideDistance = ((initialX - finalX) / (slidesWidth / 4)) * 100;
+
+  function dragSlide() {
+    if (slideDistance < 100) {
+      slides.style.left = `${currentPosition - slideDistance / 2}%`;
+    }
+  }
+
+  // drag in direction of mouse
+  if (finalX < initialX && counter <= 3) {
+    dragSlide();
+  } else if (finalX > initialX && counter >= 0) {
+    dragSlide();
+  } else if (finalX == 0) {
+    finalX = undefined;
+  }
 }
 
 function dragStop(e) {
-  if (navigation.contains(e.target)) return;
+  if (navigation.contains(e.target)) return; // avoid interval clashing
 
-  document.body.style.cursor = "default";
-  slider.style.cursor = "grab";
-  if (finalX === 0) return; // proceed only if dragging ran
-
-  // check in what direction the user goes
-  if (finalX < initialX && counter < 4) {
+  // check threshold before changing slides
+  if (finalX < initialX && counter < 3 && slideDistance >= threshold) {
     counter++;
-  } else if (finalX > initialX && counter > 1) {
+  } else if (finalX > initialX && counter > 0 && -slideDistance >= threshold) {
     counter--;
   }
-  document.getElementById("radio" + counter).checked = true;
+  moveSlide();
 
-  // resetting values and recalling interval
-  initialX = 0;
-  finalX = 0;
+  // return to default
+  document.body.style.cursor = "default";
+  slider.style.cursor = "grab";
+  initialX = undefined;
+  finalX = undefined;
   clicked = false;
   interval = setInterval(animate, 4000);
+  document.onmousemove = null;
+  document.onmouseup = null;
 }
