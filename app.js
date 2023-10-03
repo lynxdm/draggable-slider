@@ -1,6 +1,6 @@
 // ******SELECT ELEMEMTS******
 const slider = document.querySelector(".slider");
-const slides = document.querySelector(".slides");
+const slides = document.querySelector(".slides-flex");
 const navigation = document.querySelector(".navigation");
 
 // ******SET INITIAL VALUES******
@@ -12,7 +12,7 @@ let counter = 0;
 let slideDistance;
 let interval;
 let slidesWidth = slides.offsetWidth;
-let threshold = 60;
+let threshold = 40;
 
 // *******EVENT LISTENERS******
 // INITIATE INTERVAL
@@ -101,19 +101,8 @@ function dragging(e) {
 
   slideDistance = ((initialX - finalX) / (slidesWidth / 4)) * 100;
 
-  function dragSlide() {
-    if (slideDistance < 100) {
-      slides.style.left = `${currentPosition - slideDistance / 2}%`;
-    }
-  }
-
-  // drag in direction of mouse
-  if (finalX < initialX && counter <= 3) {
-    dragSlide();
-  } else if (finalX > initialX && counter >= 0) {
-    dragSlide();
-  } else if (finalX == 0) {
-    finalX = undefined;
+  if (slideDistance > -threshold && slideDistance < threshold) {
+    slides.style.left = `${currentPosition - slideDistance}%`;
   }
 }
 
