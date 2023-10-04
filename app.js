@@ -17,7 +17,7 @@ let threshold = 40;
 // *******EVENT LISTENERS******
 // INITIATE INTERVAL
 document.addEventListener("DOMContentLoaded", () => {
-  interval = setInterval(animate, 4000);
+  interval = setInterval(animate, 5000);
 });
 
 // MOUSE EVENTS
@@ -34,6 +34,7 @@ slider.addEventListener("touchend", dragStop);
 function moveSlide() {
   slides.style.left = `${newPos * counter}%`;
   document.getElementById("radio" + (counter + 1)).checked = true;
+  interval = setInterval(animate, 5000); // resume interval
 }
 
 // ******CALLBACK FUNCTIONS******
@@ -46,7 +47,8 @@ function animate() {
   } else {
     slides.style.transition = "0.8s";
   }
-  moveSlide();
+  slides.style.left = `${newPos * counter}%`;
+  document.getElementById("radio" + (counter + 1)).checked = true;
 }
 
 function dragStart(e) {
@@ -56,12 +58,10 @@ function dragStart(e) {
     clearInterval(interval);
 
     // update counter with manual btn id
-    counter = parseInt(e.target.id) - 1;
+    counter = e.target.id ? parseInt(e.target.id) - 1 : counter;
 
     slides.style.transition = "0.8s";
     moveSlide();
-    // resume interval
-    interval = setInterval(animate, 4000);
 
     return; // to avoid mistaking manual navigation for drag intent
   }
@@ -123,7 +123,6 @@ function dragStop(e) {
   initialX = undefined;
   finalX = undefined;
   clicked = false;
-  interval = setInterval(animate, 4000);
   document.onmousemove = null;
   document.onmouseup = null;
 }
