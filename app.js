@@ -2,7 +2,7 @@ const slideContainer = document.querySelector(".slider");
 const slidesFlex = document.querySelector(".slides-flex");
 const navigation = document.querySelector(".navigation");
 
-(function slider(container, slides, navigation) {
+(function slider(container, slidesFlex, navigation) {
   let initialX,
     finalX,
     leftPos = -100,
@@ -10,7 +10,8 @@ const navigation = document.querySelector(".navigation");
     counter = 0,
     slideDistance,
     interval = null,
-    slidesWidth = slides.offsetWidth,
+    numberOfSlides = slidesFlex.childElementCount,
+    slidesWidth = slidesFlex.offsetWidth,
     threshold = 40;
 
   // *******EVENT LISTENERS******
@@ -27,18 +28,18 @@ const navigation = document.querySelector(".navigation");
 
   // ******FUNCTIONS******
   function moveSlide() {
-    slides.style.left = `${leftPos * counter}%`;
+    slidesFlex.style.left = `${leftPos * counter}%`;
     document.getElementById("radio" + (counter + 1)).checked = true;
   }
 
   function animate() {
     if (clicked) return; //stop if dragging
     counter++;
-    if (counter > 3) {
+    if (counter > numberOfSlides - 1) {
       counter = 0;
-      slides.style.transition = "none";
+      slidesFlex.style.transition = "none";
     } else {
-      slides.style.transition = "0.8s";
+      slidesFlex.style.transition = "0.8s";
     }
     moveSlide();
   }
@@ -64,7 +65,7 @@ const navigation = document.querySelector(".navigation");
     e.preventDefault(); // for touchscreen defaults
 
     // sliding animation
-    slides.style.transition = "0.5s";
+    slidesFlex.style.transition = "0.5s";
     container.style.cursor = "grabbing";
     document.body.style.cursor = "grabbing";
 
@@ -90,10 +91,11 @@ const navigation = document.querySelector(".navigation");
 
     let currentPosition = counter * leftPos;
 
-    slideDistance = ((initialX - finalX) / (slidesWidth / 4)) * 100;
+    slideDistance =
+      ((initialX - finalX) / (slidesWidth / numberOfSlides)) * 100;
 
-    if (slideDistance > -threshold && slideDistance < threshold) {
-      slides.style.left = `${currentPosition - slideDistance}%`;
+    if (Math.abs(slideDistance) < threshold) {
+      slidesFlex.style.left = `${currentPosition - slideDistance}%`;
     }
   }
 
